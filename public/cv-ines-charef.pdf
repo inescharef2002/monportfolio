@@ -1,0 +1,241 @@
+%PDF-1.4
+1 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+
+2 0 obj
+<<
+/Type /Pages
+/Kids [3 0 R]
+/Count 1
+>>
+endobj
+
+3 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/MediaBox [0 0 595.28 841.89]
+/Contents 4 0 R
+/Resources <<
+  /Font <<
+    /F1 5 0 R
+    /F2 6 0 R
+    /F3 7 0 R
+  >>
+>>
+>>
+endobj
+
+4 0 obj
+<<
+/Length 5200
+>>
+stream
+BT
+/F1 24 Tf
+50 780 Td
+(INES CHAREF) Tj
+0 -20 Td
+/F2 12 Tf
+(Étudiante en 2ème année de Génie Logiciel) Tj
+
+0 -30 Td
+/F3 11 Tf
+(CONTACT) Tj
+0 -15 Td
+/F2 9 Tf
+(Téléphone: +216 98403541) Tj
+0 -12 Td
+(Email: charefines4@gmail.com) Tj
+0 -12 Td
+(Adresse: 15 Sousse, Sahloul) Tj
+0 -12 Td
+(LinkedIn: linkedin.com/in/ines-charef-8b060a319) Tj
+0 -12 Td
+(GitHub: github.com/inescharef2002) Tj
+
+0 -25 Td
+/F3 11 Tf
+(À PROPOS) Tj
+0 -12 Td
+/F2 9 Tf
+(Étudiante passionnée en génie logiciel avec une expertise en développement) Tj
+0 -10 Td
+(full-stack et intelligence artificielle. Expérience pratique en développement) Tj
+0 -10 Td
+(web, mobile et solutions cloud à travers divers projets académiques et) Tj
+0 -10 Td
+(professionnels. Capacité à concevoir des solutions techniques innovantes) Tj
+0 -10 Td
+(avec une approche centrée utilisateur.) Tj
+
+0 -25 Td
+/F3 11 Tf
+(EXPÉRIENCE PROFESSIONNELLE) Tj
+0 -12 Td
+/F2 9 Tf
+(Stagiaire en Développement Logiciel - Infolib, Tunis) Tj
+0 -10 Td
+(Octobre 2024 - Présent) Tj
+0 -8 Td
+(• Développement d'un module de gestion de parc automobile sur Dynamics 365) Tj
+0 -8 Td
+(• Intégration d'APIs de géolocalisation et création de tableaux de bord Power BI) Tj
+0 -8 Td
+(• Collaboration avec l'équipe pour l'optimisation des processus métier) Tj
+
+0 -20 Td
+/F3 11 Tf
+(FORMATION) Tj
+0 -12 Td
+/F2 9 Tf
+(Cycle d'Ingénieur en Informatique - EPI Digital School | 2024-Présent) Tj
+0 -8 Td
+(Spécialisation en développement logiciel et intelligence artificielle) Tj
+0 -10 Td
+(Cycle Préparatoire Intégré - EPI Digital School | 2021-2023) Tj
+0 -8 Td
+(Formation aux fondamentaux de l'informatique et des mathématiques) Tj
+0 -10 Td
+(Baccalauréat Technique | 2020-2021) Tj
+0 -8 Td
+(Spécialisation en sciences et technologies de l'information - Mention) Tj
+
+0 -20 Td
+/F3 11 Tf
+(PROJETS PRINCIPAUX) Tj
+0 -12 Td
+/F2 9 Tf
+(SugarHero - Application Médicale Full-Stack) Tj
+0 -8 Td
+(• Plateforme éducative pour enfants diabétiques avec suivi glycémique temps réel) Tj
+0 -8 Td
+(• Fonctionnalités: tableau de bord admin, notifications, récupération mot de passe) Tj
+0 -8 Td
+(• Technologies: React.js, Node.js, MongoDB, JWT, Socket.IO, Nodemailer) Tj
+
+0 -12 Td
+(GuardPet - Projet UX/UI Design) Tj
+0 -8 Td
+(• Application de mise en relation propriétaires d'animaux et pet-sitters) Tj
+0 -8 Td
+(• Recherche utilisateur, personas, wireframes et maquettes haute fidélité) Tj
+0 -8 Td
+(• Outils: Figma, Balsamiq, Xtensio, Miro) Tj
+
+0 -12 Td
+(Système Bibliothèque - Application Web Spring Boot) Tj
+0 -8 Td
+(• Solution complète avec API REST et base de données relationnelle) Tj
+0 -8 Td
+(• Interfaces dynamiques et recherche multicritères optimisée) Tj
+0 -8 Td
+(• Technologies: Java, Spring Boot, MySQL, Thymeleaf, Spring Security) Tj
+
+0 -12 Td
+(Analyse COVID-19 - Data Science) Tj
+0 -8 Td
+(• Exploration de dataset et analyse exploratoire avec Pandas, NumPy) Tj
+0 -8 Td
+(• Visualisations interactives avec Plotly, Seaborn) Tj
+0 -8 Td
+(• Calcul d'indicateurs stratégiques et modélisation statistique) Tj
+
+0 -12 Td
+(Application ToDoList Android) Tj
+0 -8 Td
+(• Application de gestion de tâches avec authentification Firebase) Tj
+0 -8 Td
+(• Technologies: Java, Android Studio, Firebase Auth, Realtime Database) Tj
+
+0 -20 Td
+/F3 11 Tf
+(COMPÉTENCES TECHNIQUES) Tj
+0 -12 Td
+/F2 9 Tf
+(Programmation: Python, Java, JavaScript, TypeScript, C/C++, Kotlin, Swift) Tj
+0 -10 Td
+(Intelligence Artificielle: TensorFlow, PyTorch, Keras, CNN/RNN, scikit-learn) Tj
+0 -10 Td
+(Web/Mobile: React, Node.js, Spring Boot, Android $$Kotlin$$, iOS $$Swift$$) Tj
+0 -10 Td
+(Cloud/DevOps: Azure $$certifié AZ-900$$, AWS, Docker, GitHub, CI/CD) Tj
+0 -10 Td
+(Bases de données: SQL, MongoDB, Firebase, PostgreSQL) Tj
+0 -10 Td
+(UX/UI Design: Figma, Wireframing, Prototyping, User Research, Design Thinking) Tj
+0 -10 Td
+(Systèmes: Linux $$administration basique$$, Shell Scripting) Tj
+
+0 -20 Td
+/F3 11 Tf
+(CERTIFICATIONS) Tj
+0 -12 Td
+/F2 9 Tf
+(• CCNA1/CCNA2 - Réseaux informatiques et protocoles) Tj
+0 -10 Td
+(• Microsoft Azure Fundamentals $$AZ-900$$ - Services cloud Microsoft Azure) Tj
+0 -10 Td
+(• AWS Cloud Practitioner - Services cloud Amazon Web Services) Tj
+
+0 -20 Td
+/F3 11 Tf
+(LANGUES) Tj
+0 -12 Td
+/F2 9 Tf
+(• Arabe: Langue maternelle) Tj
+0 -10 Td
+(• Français: Courant $$écrit et oral$$) Tj
+0 -10 Td
+(• Anglais: Intermédiaire $$technique$$) Tj
+
+ET
+endstream
+endobj
+
+5 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica-Bold
+>>
+endobj
+
+6 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica
+>>
+endobj
+
+7 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica-Bold
+>>
+endobj
+
+xref
+0 8
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000274 00000 n 
+0000005526 00000 n 
+0000005603 00000 n 
+0000005676 00000 n 
+trailer
+<<
+/Size 8
+/Root 1 0 R
+>>
+startxref
+5749
+%%EOF
