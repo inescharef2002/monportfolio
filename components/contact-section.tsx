@@ -6,9 +6,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
-import { Github, Linkedin, Mail, MapPin, Phone } from "lucide-react"
+import { Github, Linkedin, Mail, MapPin } from "lucide-react"
+import { useLanguage } from "@/lib/language-context"
+import { translations } from "@/lib/translations"
 
 export default function ContactSection() {
+  const { language } = useLanguage()
+  const t = translations[language]
+
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -33,7 +38,6 @@ export default function ContactSection() {
     setSubmitError("")
 
     try {
-      // Utilisation du nouvel endpoint Formspree
       const response = await fetch("https://formspree.io/f/mgvkjern", {
         method: "POST",
         headers: {
@@ -56,10 +60,10 @@ export default function ContactSection() {
           message: "",
         })
       } else {
-        throw new Error("Erreur lors de l'envoi du message")
+        throw new Error(t.contact.errorGeneric)
       }
     } catch (error) {
-      setSubmitError("Erreur lors de l'envoi du message. Veuillez réessayer.")
+      setSubmitError(t.contact.errorGeneric)
       console.error("Erreur:", error)
     } finally {
       setIsSubmitting(false)
@@ -70,19 +74,15 @@ export default function ContactSection() {
     <section id="contact" className="py-16 bg-gradient-to-b from-white to-blue-50">
       <div className="container">
         <div className="text-center mb-12 animate-slideUp">
-          <h2 className="text-3xl font-bold mb-2 text-blue-800">Contact</h2>
-          <p className="text-blue-600 max-w-2xl mx-auto">
-            N'hésitez pas à me contacter pour discuter de projets ou d'opportunités
-          </p>
+          <h2 className="text-3xl font-bold mb-2 text-blue-800">{t.contact.title}</h2>
+          <p className="text-blue-600 max-w-2xl mx-auto">{t.contact.subtitle}</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
           <Card className="border-blue-100 shadow-md animate-slideUp">
             <CardHeader>
-              <CardTitle className="text-blue-800">Envoyez-moi un message</CardTitle>
-              <CardDescription>
-                Remplissez le formulaire ci-dessous et je vous répondrai dès que possible
-              </CardDescription>
+              <CardTitle className="text-blue-800">{t.contact.formTitle}</CardTitle>
+              <CardDescription>{t.contact.formSubtitle}</CardDescription>
             </CardHeader>
             <CardContent>
               {isSubmitted ? (
@@ -98,12 +98,10 @@ export default function ContactSection() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-medium mb-2 text-blue-800">Message envoyé !</h3>
-                  <p className="text-muted-foreground">
-                    Merci pour votre message. Je vous répondrai dans les plus brefs délais.
-                  </p>
+                  <h3 className="text-xl font-medium mb-2 text-blue-800">{t.contact.sentTitle}</h3>
+                  <p className="text-muted-foreground">{t.contact.sentBody}</p>
                   <Button className="mt-4 bg-blue-600 hover:bg-blue-700" onClick={() => setIsSubmitted(false)}>
-                    Envoyer un autre message
+                    {t.contact.sendAnother}
                   </Button>
                 </div>
               ) : (
@@ -111,12 +109,12 @@ export default function ContactSection() {
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <label htmlFor="name" className="text-sm font-medium text-blue-700">
-                        Nom
+                        {t.contact.nameLabel}
                       </label>
                       <Input
                         id="name"
                         name="name"
-                        placeholder="Votre nom"
+                        placeholder={t.contact.namePlaceholder}
                         value={formState.name}
                         onChange={handleChange}
                         required
@@ -125,13 +123,13 @@ export default function ContactSection() {
                     </div>
                     <div className="space-y-2">
                       <label htmlFor="email" className="text-sm font-medium text-blue-700">
-                        Email
+                        {t.contact.emailLabel}
                       </label>
                       <Input
                         id="email"
                         name="email"
                         type="email"
-                        placeholder="votre@email.com"
+                        placeholder={t.contact.emailPlaceholder}
                         value={formState.email}
                         onChange={handleChange}
                         required
@@ -141,12 +139,12 @@ export default function ContactSection() {
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="subject" className="text-sm font-medium text-blue-700">
-                      Sujet
+                      {t.contact.subjectLabel}
                     </label>
                     <Input
                       id="subject"
                       name="subject"
-                      placeholder="Sujet de votre message"
+                      placeholder={t.contact.subjectPlaceholder}
                       value={formState.subject}
                       onChange={handleChange}
                       required
@@ -155,12 +153,12 @@ export default function ContactSection() {
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="message" className="text-sm font-medium text-blue-700">
-                      Message
+                      {t.contact.messageLabel}
                     </label>
                     <Textarea
                       id="message"
                       name="message"
-                      placeholder="Votre message"
+                      placeholder={t.contact.messagePlaceholder}
                       rows={5}
                       value={formState.message}
                       onChange={handleChange}
@@ -170,7 +168,7 @@ export default function ContactSection() {
                   </div>
                   {submitError && <div className="text-red-600 text-sm">{submitError}</div>}
                   <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700" disabled={isSubmitting}>
-                    {isSubmitting ? "Envoi en cours..." : "Envoyer le message"}
+                    {isSubmitting ? t.contact.sending : t.contact.send}
                   </Button>
                 </form>
               )}
@@ -180,28 +178,21 @@ export default function ContactSection() {
           <div className="space-y-6 animate-slideUp animate-delay-300">
             <Card className="border-blue-100 shadow-md">
               <CardHeader>
-                <CardTitle className="text-blue-800">Informations de contact</CardTitle>
+                <CardTitle className="text-blue-800">{t.contact.infoTitle}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-start gap-3">
                   <Mail className="h-5 w-5 text-blue-600 mt-0.5" />
                   <div>
-                    <h3 className="font-medium text-blue-700">Email</h3>
+                    <h3 className="font-medium text-blue-700">{t.contact.email}</h3>
                     <p className="text-muted-foreground">charefines4@gmail.com</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Phone className="h-5 w-5 text-blue-600 mt-0.5" />
-                  <div>
-                    <h3 className="font-medium text-blue-700">Téléphone</h3>
-                    <p className="text-muted-foreground">+216 98403541</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <MapPin className="h-5 w-5 text-blue-600 mt-0.5" />
                   <div>
-                    <h3 className="font-medium text-blue-700">Localisation</h3>
-                    <p className="text-muted-foreground">15 Sousse, Sahloul</p>
+                    <h3 className="font-medium text-blue-700">{t.contact.location}</h3>
+                    <p className="text-muted-foreground">{t.contact.locationValue}</p>
                   </div>
                 </div>
               </CardContent>
@@ -209,7 +200,7 @@ export default function ContactSection() {
 
             <Card className="border-blue-100 shadow-md">
               <CardHeader>
-                <CardTitle className="text-blue-800">Réseaux sociaux</CardTitle>
+                <CardTitle className="text-blue-800">{t.contact.socialTitle}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <a
@@ -225,7 +216,7 @@ export default function ContactSection() {
                   </div>
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/ines-charef-8b060a319/"
+                  href="https://www.linkedin.com/in/ines-charef"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 p-3 rounded-lg hover:bg-blue-50 transition-colors"
@@ -233,7 +224,7 @@ export default function ContactSection() {
                   <Linkedin className="h-5 w-5 text-blue-600" />
                   <div>
                     <h3 className="font-medium text-blue-700">LinkedIn</h3>
-                    <p className="text-muted-foreground">linkedin.com/in/ines-charef-8b060a319</p>
+                    <p className="text-muted-foreground">linkedin.com/in/ines-charef</p>
                   </div>
                 </a>
               </CardContent>

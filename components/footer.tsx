@@ -1,12 +1,19 @@
+"use client"
+
 import { Github, Linkedin, Mail } from "lucide-react"
+import { useLanguage } from "@/lib/language-context"
+import { translations } from "@/lib/translations"
 
 export default function Footer() {
+  const { language } = useLanguage()
+  const t = translations[language]
+
   return (
     <footer className="border-t py-8 bg-gradient-to-b from-blue-50 to-blue-100">
       <div className="container">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
-            <p className="text-sm text-blue-700">© 2024 Ines Charef. Tous droits réservés.</p>
+            <p className="text-sm text-blue-700">© 2026 Ines Charef. {t.footer.rights}</p>
           </div>
           <div className="flex items-center space-x-4">
             <a
@@ -19,7 +26,7 @@ export default function Footer() {
               <span className="sr-only">GitHub</span>
             </a>
             <a
-              href="https://www.linkedin.com/in/ines-charef-8b060a319/"
+              href="https://www.linkedin.com/in/ines-charef"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 hover:text-blue-800 transition-colors"

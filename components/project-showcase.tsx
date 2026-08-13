@@ -25,16 +25,194 @@ import {
   Mail,
   Utensils,
   Dumbbell,
+  Camera,
+  ShoppingBag,
+  ShoppingCart,
+  CloudSun,
+  Sparkles,
 } from "lucide-react"
 
 interface ProjectShowcaseProps {
-  project: "sugarhero" | "covid" | "todolist" | "springboot" | "guardpet" | "serenity"
+  project: "smartclothing" | "sugarhero" | "covid" | "todolist" | "springboot" | "guardpet"
 }
 
 export default function ProjectShowcase({ project }: ProjectShowcaseProps) {
   const [activeDemo, setActiveDemo] = useState("login")
 
   const projects = {
+    smartclothing: {
+      title: "Smart Clothing Advisor",
+      subtitle: "Projet de Fin d'Études (PFE) — SPACE HR",
+      description:
+        "Application mobile IA de recommandation vestimentaire par vision par ordinateur, avec suggestions météo, garde-robe intelligente et marketplace",
+      tags: ["Flutter", "FastAPI", "Firebase", "Gemini 2.0 Flash Vision API", "MobileNetV2", "ONNX"],
+      longDescription:
+        "Smart Clothing Advisor est mon projet de fin d'études réalisé chez SPACE HR (Tunisie), soutenu avec la mention Excellent. L'application mobile (Flutter, FastAPI, Firebase) analyse les vêtements de l'utilisateur par vision par ordinateur (photo → catégorie, couleur, motif). J'ai conçu et itéré un pipeline de classification d'image en 3 générations : un CNN entraîné sur Fashion-MNIST, puis MobileNetV2 (92,6% de précision), jusqu'à l'intégration de l'API Google Gemini 2.0 Flash Vision comme classifieur principal, avec le modèle local en fallback hors ligne. L'app propose ensuite des tenues personnalisées selon la météo en temps réel et l'occasion (quotidien, travail, soirée, sport, rendez-vous, weekend, mariage), avec un score de compatibilité des couleurs. Elle inclut aussi une garde-robe numérique, une marketplace de vêtements et un dashboard d'administration.",
+      features: [
+        { icon: <Camera className="text-blue-600 h-5 w-5" />, text: "Analyse IA de vêtements" },
+        { icon: <CloudSun className="text-blue-600 h-5 w-5" />, text: "Suggestions météo & occasion" },
+        { icon: <Shield className="text-blue-600 h-5 w-5" />, text: "Garde-robe intelligente" },
+        { icon: <ShoppingBag className="text-blue-600 h-5 w-5" />, text: "Marketplace intégrée" },
+      ],
+      detailedFeatures: [
+        {
+          title: "Analyse de vêtement par IA",
+          description:
+            "Prise de photo ou import depuis la galerie : l'IA détecte automatiquement la catégorie, la couleur et le motif du vêtement avec un score de confiance, champs modifiables par l'utilisateur.",
+        },
+        {
+          title: "Suggestions selon la météo",
+          description:
+            "Récupération de la météo en temps réel (température, conditions) et génération de tenues adaptées avec conseils IA personnalisés.",
+        },
+        {
+          title: "Suggestions par occasion",
+          description:
+            "Tenues recommandées selon l'occasion (quotidienne, travail, soirée, sport, rendez-vous, weekend, mariage) avec un pourcentage de compatibilité des couleurs.",
+        },
+        {
+          title: "Garde-robe intelligente",
+          description:
+            "Ajout de vêtements manuellement ou depuis la marketplace, organisation par catégories (t-shirts, chemises, pulls, vestes, robes...) et par taille.",
+        },
+        {
+          title: "Marketplace intégrée",
+          description:
+            "Catalogue d'articles avec promotions et nouveautés, fiche produit détaillée (couleur, taille), panier et commande avec plusieurs méthodes de paiement.",
+        },
+        {
+          title: "Dashboard Admin",
+          description:
+            "Interface web d'administration pour la gestion des utilisateurs, des articles, des commandes et le suivi des performances du modèle IA.",
+        },
+      ],
+      techStack: {
+        frontend: [
+          { name: "Flutter", description: "Application mobile cross-platform (Dart)" },
+          { name: "Firebase Auth", description: "Authentification email/mot de passe et Google Sign-In" },
+          { name: "Géolocalisation", description: "Détection de la position pour la météo locale" },
+        ],
+        backend: [
+          { name: "FastAPI", description: "API Python pour le service de recommandation et le marketplace" },
+          { name: "Gemini 2.0 Flash Vision API", description: "Classifieur principal de vêtements par vision par ordinateur" },
+          { name: "MobileNetV2", description: "Modèle CNN entraîné (92,6% de précision), 2e génération du pipeline" },
+          { name: "ONNX Runtime", description: "Exécution du modèle local en fallback hors ligne" },
+          { name: "API Météo", description: "Récupération des conditions météo en temps réel" },
+        ],
+      },
+      challenges: [
+        {
+          title: "Précision de la détection vêtement",
+          description: "Les photos utilisateurs varient énormément en angle, lumière et fond.",
+          solution:
+            "Itération sur 3 générations de modèles (CNN Fashion-MNIST → MobileNetV2 92,6% → Gemini 2.0 Flash Vision API en classifieur principal), avec le modèle local ONNX en fallback hors ligne.",
+        },
+        {
+          title: "Recommandations réellement pertinentes",
+          description: "Croiser météo, occasion et garde-robe existante pour proposer des tenues cohérentes.",
+          solution:
+            "Algorithme de scoring de compatibilité des couleurs affichant un pourcentage de pertinence pour chaque tenue suggérée.",
+        },
+        {
+          title: "Expérience de bout en bout",
+          description: "Relier l'analyse IA à un vrai parcours d'achat sans rupture d'expérience.",
+          solution:
+            "Intégration complète d'une marketplace (panier, checkout, suivi de commande) directement connectée à la garde-robe et aux suggestions.",
+        },
+      ],
+      demoScreens: [
+        {
+          id: "signup",
+          name: "Inscription",
+          icon: <UserPlus className="mr-2 h-4 w-4" />,
+          image: "/smartclothing-signup.png",
+        },
+        {
+          id: "login",
+          name: "Connexion",
+          icon: <Shield className="mr-2 h-4 w-4" />,
+          image: "/smartclothing-login.png",
+        },
+        {
+          id: "home",
+          name: "Accueil",
+          icon: <Activity className="mr-2 h-4 w-4" />,
+          image: "/smartclothing-home.png",
+        },
+        {
+          id: "analyse",
+          name: "Analyse IA",
+          icon: <Camera className="mr-2 h-4 w-4" />,
+          image: "/smartclothing-analyse.png",
+        },
+        {
+          id: "wardrobe",
+          name: "Garde-robe",
+          icon: <CheckSquare className="mr-2 h-4 w-4" />,
+          image: "/smartclothing-garde-robe.png",
+        },
+        {
+          id: "add-item",
+          name: "Ajouter un Vêtement",
+          icon: <PlusCircle className="mr-2 h-4 w-4" />,
+          image: "/smartclothing-ajout-vetement.png",
+        },
+        {
+          id: "suggestions-weather",
+          name: "Suggestions Météo",
+          icon: <CloudSun className="mr-2 h-4 w-4" />,
+          image: "/smartclothing-suggestions-meteo.png",
+        },
+        {
+          id: "suggestions-occasion",
+          name: "Suggestions Occasion",
+          icon: <Users className="mr-2 h-4 w-4" />,
+          image: "/smartclothing-suggestions-occasion.png",
+        },
+        {
+          id: "history",
+          name: "Historique IA",
+          icon: <Clock className="mr-2 h-4 w-4" />,
+          image: "/smartclothing-historique-ia.png",
+        },
+        {
+          id: "marketplace",
+          name: "Marketplace",
+          icon: <ShoppingBag className="mr-2 h-4 w-4" />,
+          image: "/smartclothing-marketplace.png",
+        },
+        {
+          id: "product",
+          name: "Détail Produit",
+          icon: <Search className="mr-2 h-4 w-4" />,
+          image: "/smartclothing-produit-detail.png",
+        },
+        {
+          id: "cart",
+          name: "Panier",
+          icon: <ShoppingCart className="mr-2 h-4 w-4" />,
+          image: "/smartclothing-panier.png",
+        },
+        {
+          id: "checkout",
+          name: "Commande",
+          icon: <Mail className="mr-2 h-4 w-4" />,
+          image: "/smartclothing-checkout.png",
+        },
+        {
+          id: "profile",
+          name: "Profil",
+          icon: <UserPlus className="mr-2 h-4 w-4" />,
+          image: "/smartclothing-profil.png",
+        },
+        {
+          id: "admin",
+          name: "Dashboard Admin",
+          icon: <Settings className="mr-2 h-4 w-4" />,
+          image: "/smartclothing-admin-users.png",
+        },
+      ],
+    },
     guardpet: {
       title: "GuardPet",
       subtitle: "Projet UX/UI Design",
@@ -331,149 +509,6 @@ export default function ProjectShowcase({ project }: ProjectShowcaseProps) {
         },
       ],
     },
-    serenity: {
-      title: "Serenity Tunisia",
-      subtitle: "Plateforme de Bien-être Tunisienne",
-      description:
-        "Application web complète de méditation et bien-être développée avec les dernières technologies React et Next.js, spécialement conçue pour le marché tunisien",
-      tags: ["Next.js", "React", "TypeScript", "IA Conversationnelle", "Tailwind CSS"],
-      longDescription:
-        "Une application web complète de méditation et bien-être développée avec les dernières technologies React et Next.js, spécialement conçue pour le marché tunisien. Cette plateforme offre une expérience utilisateur immersive avec des sessions de méditation guidées en arabe, un système de coaching personnalisé avec des professionnels locaux, et un assistant IA intelligent nommé 'Ines' qui fournit des recommandations personnalisées basées sur les habitudes et préférences de l'utilisateur.",
-      features: [
-        { icon: <Activity className="text-blue-600 h-5 w-5" />, text: "Sessions interactives" },
-        { icon: <Users className="text-blue-600 h-5 w-5" />, text: "Coaching personnalisé" },
-        { icon: <Shield className="text-blue-600 h-5 w-5" />, text: "Assistant IA 'Ines'" },
-        { icon: <Clock className="text-blue-600 h-5 w-5" />, text: "Suivi des progrès" },
-      ],
-      detailedFeatures: [
-        {
-          title: "Sessions de méditation interactives",
-          description:
-            "Lecteur audio intégré avec timer en temps réel pour des sessions de méditation guidées en français et arabe, adaptées à la culture tunisienne.",
-        },
-        {
-          title: "Système de réservation avancé",
-          description:
-            "Sélection de coachs locaux, créneaux horaires flexibles et gestion de calendrier intégrée pour un suivi personnalisé.",
-        },
-        {
-          title: "Tableau de bord personnalisé",
-          description:
-            "Suivi des progrès en temps réel, objectifs quotidiens personnalisables et métriques de bien-être détaillées.",
-        },
-        {
-          title: "Assistant IA 'Ines'",
-          description:
-            "Chatbot conversationnel intelligent qui fournit des recommandations personnalisées et des conseils adaptatifs basés sur les habitudes utilisateur.",
-        },
-        {
-          title: "Système de notifications intelligent",
-          description:
-            "Rappels personnalisés, achievements et notifications push pour maintenir l'engagement et la motivation.",
-        },
-        {
-          title: "Interface multilingue",
-          description:
-            "Support français/arabe avec adaptation culturelle pour le marché tunisien et expérience utilisateur localisée.",
-        },
-      ],
-      techStack: {
-        frontend: [
-          { name: "Next.js", description: "Framework React avec App Router et optimisations" },
-          { name: "React", description: "Bibliothèque UI avec hooks avancés" },
-          { name: "TypeScript", description: "Typage statique pour la robustesse" },
-          { name: "Tailwind CSS", description: "Framework CSS utilitaire" },
-          { name: "Shadcn/ui", description: "Composants UI modernes et accessibles" },
-          { name: "Lucide React", description: "Icônes vectorielles optimisées" },
-        ],
-        backend: [
-          { name: "IA Conversationnelle", description: "Système de chatbot avec NLP" },
-          { name: "Web Audio API", description: "Lecture audio native pour méditations" },
-          { name: "LocalStorage", description: "Persistance des données utilisateur" },
-          { name: "React Hooks", description: "Gestion d'état avec useState, useEffect, useCallback" },
-          { name: "Responsive Design", description: "Mobile-first avec support multi-appareils" },
-          { name: "Animations CSS", description: "Transitions fluides et feedback visuel" },
-        ],
-      },
-      challenges: [
-        {
-          title: "Intégration IA avancée",
-          description:
-            "Développer un système de réponses contextuelles avec apprentissage des préférences utilisateur.",
-          solution:
-            "Implémentation d'un chatbot conversationnel avec traitement du langage naturel et système de recommandations adaptatif.",
-        },
-        {
-          title: "Gestion complexe de l'état",
-          description: "Synchronisation temps réel entre composants avec gestion des sessions et progrès utilisateur.",
-          solution:
-            "Architecture modulaire avec hooks personnalisés et gestion d'état optimisée pour les performances.",
-        },
-        {
-          title: "Expérience utilisateur culturellement adaptée",
-          description:
-            "Créer une interface qui respecte les spécificités culturelles tunisiennes tout en restant moderne.",
-          solution:
-            "Recherche utilisateur approfondie et design centré sur l'utilisateur avec support multilingue natif.",
-        },
-      ],
-      demoScreens: [
-        {
-          id: "dashboard",
-          name: "Tableau de bord",
-          icon: <LineChart className="mr-2 h-4 w-4" />,
-          image: "/serenity-dashboard.png",
-        },
-        {
-          id: "signup",
-          name: "Inscription",
-          icon: <UserPlus className="mr-2 h-4 w-4" />,
-          image: "/serenity-signup.png",
-        },
-        {
-          id: "login",
-          name: "Connexion",
-          icon: <Shield className="mr-2 h-4 w-4" />,
-          image: "/serenity-login.png",
-        },
-        {
-          id: "sessions",
-          name: "Sessions",
-          icon: <Activity className="mr-2 h-4 w-4" />,
-          image: "/serenity-sessions.png",
-        },
-        {
-          id: "booking",
-          name: "Réservation Coach",
-          icon: <Users className="mr-2 h-4 w-4" />,
-          image: "/serenity-booking.png",
-        },
-        {
-          id: "goals",
-          name: "Objectifs",
-          icon: <CheckSquare className="mr-2 h-4 w-4" />,
-          image: "/serenity-goals.png",
-        },
-        {
-          id: "metrics",
-          name: "Métriques",
-          icon: <BarChart className="mr-2 h-4 w-4" />,
-          image: "/serenity-metrics.png",
-        },
-        {
-          id: "ai-chat1",
-          name: "Assistant IA",
-          icon: <Activity className="mr-2 h-4 w-4" />,
-          image: "/serenity-ai-chat1.png",
-        },
-        {
-          id: "ai-chat2",
-          name: "Chat IA Avancé",
-          icon: <Activity className="mr-2 h-4 w-4" />,
-          image: "/serenity-ai-chat2.png",
-        },
-      ],
-    },
     covid: {
       title: "Analyse COVID-19",
       subtitle: "Data Science & Analyse de Données",
@@ -756,6 +791,13 @@ export default function ProjectShowcase({ project }: ProjectShowcaseProps) {
           </div>
         </div>
         <div className="bg-muted rounded-lg overflow-hidden shadow-lg animate-fadeIn">
+          {project === "smartclothing" && (
+            <img
+              src="/smartclothing-home.png"
+              alt={`${currentProject.title} Application`}
+              className="w-full h-full object-cover"
+            />
+          )}
           {project === "guardpet" && (
             <img
               src="/guardpet-logo.png"
@@ -787,13 +829,6 @@ export default function ProjectShowcase({ project }: ProjectShowcaseProps) {
           {project === "springboot" && (
             <img
               src="/library-books.png"
-              alt={`${currentProject.title} Application`}
-              className="w-full h-full object-cover"
-            />
-          )}
-          {project === "serenity" && (
-            <img
-              src="/serenity-dashboard.png"
               alt={`${currentProject.title} Application`}
               className="w-full h-full object-cover"
             />

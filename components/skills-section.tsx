@@ -4,19 +4,22 @@ import { useState } from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
+import { useLanguage } from "@/lib/language-context"
+import { translations } from "@/lib/translations"
 
 export default function SkillsSection() {
   const [selectedTab, setSelectedTab] = useState("programming")
+  const { language } = useLanguage()
+  const t = translations[language]
 
   const skills = {
     programming: [
       { name: "Python", level: 90 },
       { name: "Java", level: 85 },
       { name: "JavaScript", level: 80 },
-      { name: "TypeScript", level: 75 },
-      { name: "C/C++", level: 70 },
+      { name: "Dart", level: 80 },
       { name: "Kotlin", level: 65 },
-      { name: "Swift", level: 60 },
+      { name: "PHP", level: 70 },
     ],
     ux: [
       { name: "Figma", level: 85 },
@@ -28,31 +31,30 @@ export default function SkillsSection() {
       { name: "User Stories", level: 85 },
     ],
     ai: [
-      { name: "TensorFlow", level: 85 },
-      { name: "PyTorch", level: 80 },
-      { name: "Keras", level: 75 },
-      { name: "CNN/RNN", level: 70 },
-      { name: "scikit-learn", level: 65 },
+      { name: "Machine Learning", level: 85 },
+      { name: "TensorFlow", level: 80 },
+      { name: "OpenCV", level: 80 },
+      { name: "Power BI", level: 80 },
     ],
     web: [
+      { name: "Flutter", level: 85 },
       { name: "React", level: 85 },
       { name: "Node.js", level: 80 },
+      { name: "Angular", level: 70 },
       { name: "Spring Boot", level: 75 },
-      { name: "Android (Kotlin)", level: 70 },
-      { name: "iOS (Swift)", level: 65 },
+      { name: ".NET", level: 65 },
     ],
     cloud: [
       { name: "Azure", level: 80 },
       { name: "AWS", level: 75 },
-      { name: "Docker", level: 70 },
-      { name: "GitHub", level: 85 },
-      { name: "CI/CD", level: 65 },
+      { name: "Git", level: 85 },
+      { name: "SCRUM", level: 80 },
     ],
     database: [
-      { name: "SQL", level: 85 },
       { name: "MongoDB", level: 80 },
-      { name: "Firebase", level: 75 },
+      { name: "MySQL", level: 80 },
       { name: "PostgreSQL", level: 70 },
+      { name: "Firebase", level: 80 },
     ],
     systems: [
       { name: "Linux", level: 80 },
@@ -64,11 +66,8 @@ export default function SkillsSection() {
     <section id="skills" className="py-16 bg-gradient-to-b from-blue-50 to-white">
       <div className="container">
         <div className="text-center mb-12 animate-slideUp">
-          <h2 className="text-3xl font-bold mb-2 text-blue-800">Compétences Techniques</h2>
-          <p className="text-blue-600 max-w-2xl mx-auto">
-            Mes compétences techniques couvrent un large éventail de technologies, du développement web et mobile à
-            l'intelligence artificielle, au cloud et au design UX/UI.
-          </p>
+          <h2 className="text-3xl font-bold mb-2 text-blue-800">{t.skills.title}</h2>
+          <p className="text-blue-600 max-w-2xl mx-auto">{t.skills.subtitle}</p>
         </div>
 
         <Tabs defaultValue="programming" className="mb-12" onValueChange={setSelectedTab}>
@@ -78,25 +77,25 @@ export default function SkillsSection() {
                 value="programming"
                 className="data-[state=active]:bg-blue-600 data-[state=active]:text-white"
               >
-                Programmation
+                {t.skills.tabs.programming}
               </TabsTrigger>
               <TabsTrigger value="ux" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">
-                UX/UI Design
+                {t.skills.tabs.ux}
               </TabsTrigger>
               <TabsTrigger value="ai" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">
-                IA
+                {t.skills.tabs.ai}
               </TabsTrigger>
               <TabsTrigger value="web" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">
-                Web/Mobile
+                {t.skills.tabs.web}
               </TabsTrigger>
               <TabsTrigger value="cloud" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">
-                Cloud/DevOps
+                {t.skills.tabs.cloud}
               </TabsTrigger>
               <TabsTrigger value="database" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">
-                Bases de données
+                {t.skills.tabs.database}
               </TabsTrigger>
               <TabsTrigger value="systems" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">
-                Systèmes
+                {t.skills.tabs.systems}
               </TabsTrigger>
             </TabsList>
           </div>
@@ -133,46 +132,34 @@ export default function SkillsSection() {
         <div className="grid md:grid-cols-4 gap-6">
           <Card className="border-blue-100 shadow-md hover:shadow-lg transition-all duration-300 animate-slideUp">
             <CardHeader>
-              <CardTitle className="text-blue-800">UX/UI Design</CardTitle>
+              <CardTitle className="text-blue-800">{t.skills.cards.ux.title}</CardTitle>
             </CardHeader>
             <CardContent>
-              <p>
-                Conception d'expériences utilisateur centrées sur l'humain avec recherche utilisateur, personas,
-                wireframes et prototypes interactifs.
-              </p>
+              <p>{t.skills.cards.ux.description}</p>
             </CardContent>
           </Card>
           <Card className="border-blue-100 shadow-md hover:shadow-lg transition-all duration-300 animate-slideUp animate-delay-200">
             <CardHeader>
-              <CardTitle className="text-blue-800">Développement Full-Stack</CardTitle>
+              <CardTitle className="text-blue-800">{t.skills.cards.fullstack.title}</CardTitle>
             </CardHeader>
             <CardContent>
-              <p>
-                Expérience complète dans le développement d'applications web et mobiles, de la conception de l'interface
-                utilisateur à l'implémentation des API et la gestion des bases de données.
-              </p>
+              <p>{t.skills.cards.fullstack.description}</p>
             </CardContent>
           </Card>
           <Card className="border-blue-100 shadow-md hover:shadow-lg transition-all duration-300 animate-slideUp animate-delay-400">
             <CardHeader>
-              <CardTitle className="text-blue-800">Intelligence Artificielle</CardTitle>
+              <CardTitle className="text-blue-800">{t.skills.cards.ai.title}</CardTitle>
             </CardHeader>
             <CardContent>
-              <p>
-                Compétences en développement de modèles d'apprentissage automatique et de réseaux de neurones pour
-                l'analyse de données et la résolution de problèmes complexes.
-              </p>
+              <p>{t.skills.cards.ai.description}</p>
             </CardContent>
           </Card>
           <Card className="border-blue-100 shadow-md hover:shadow-lg transition-all duration-300 animate-slideUp animate-delay-600">
             <CardHeader>
-              <CardTitle className="text-blue-800">Cloud & DevOps</CardTitle>
+              <CardTitle className="text-blue-800">{t.skills.cards.cloud.title}</CardTitle>
             </CardHeader>
             <CardContent>
-              <p>
-                Expérience dans le déploiement et la gestion d'applications sur des plateformes cloud comme Azure et
-                AWS, ainsi que dans l'utilisation d'outils DevOps pour l'automatisation.
-              </p>
+              <p>{t.skills.cards.cloud.description}</p>
             </CardContent>
           </Card>
         </div>

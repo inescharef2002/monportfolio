@@ -7,60 +7,28 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import ProjectShowcase from "./project-showcase"
+import { useLanguage } from "@/lib/language-context"
+import { translations } from "@/lib/translations"
+
+const PROJECT_META = [
+  { id: "smartclothing", category: "mobile", image: "/smartclothing-home.png", tags: ["Flutter", "FastAPI", "Firebase", "Gemini 2.0 Flash Vision API"] },
+  { id: "sugarhero", category: "web", image: "/sugarhero-hero.png", tags: ["React.js", "Node.js", "MongoDB"] },
+  { id: "covid", category: "data", image: "/covid-timeline.png", tags: ["Python", "Pandas", "Plotly"] },
+  { id: "todolist", category: "mobile", image: "/todolist-main-interface.png", tags: ["Java", "Android", "Firebase"] },
+  { id: "springboot", category: "web", image: "/library-books.png", tags: ["Java", "Spring Boot", "MySQL"] },
+  { id: "guardpet", category: "ux", image: "/guardpet-home-updated.png", tags: ["UX/UI Design", "Figma", "Wireframes"] },
+] as const
 
 export default function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<string | null>(null)
+  const { language } = useLanguage()
+  const t = translations[language]
 
-  const projects = [
-    {
-      id: "sugarhero",
-      title: "SugarHero",
-      category: "web",
-      description: "Application médicale pour enfants diabétiques",
-      image: "/sugarhero-hero.png",
-      tags: ["React.js", "Node.js", "MongoDB"],
-    },
-    {
-      id: "serenity",
-      title: "Serenity Tunisia",
-      category: "web",
-      description: "Plateforme de bien-être tunisienne avec IA conversationnelle",
-      image: "/serenity-dashboard.png",
-      tags: ["Next.js 15", "React 18", "IA", "TypeScript"],
-    },
-    {
-      id: "covid",
-      title: "Analyse COVID-19",
-      category: "data",
-      description: "Analyse de données et facteurs de risque",
-      image: "/covid-timeline.png",
-      tags: ["Python", "Pandas", "Plotly"],
-    },
-    {
-      id: "todolist",
-      title: "ToDoList",
-      category: "mobile",
-      description: "Application mobile de gestion de tâches",
-      image: "/todolist-main-interface.png",
-      tags: ["Java", "Android", "Firebase"],
-    },
-    {
-      id: "springboot",
-      title: "Système Bibliothèque",
-      category: "web",
-      description: "Gestion de bibliothèque avec Spring Boot",
-      image: "/library-books.png",
-      tags: ["Java", "Spring Boot", "MySQL"],
-    },
-    {
-      id: "guardpet",
-      title: "GuardPet (Paw Pets)",
-      category: "ux",
-      description: "Application de mise en relation propriétaires/pet-sitters",
-      image: "/guardpet-home-updated.png",
-      tags: ["UX/UI Design", "Figma", "Wireframes"],
-    },
-  ]
+  const projects = PROJECT_META.map((meta) => ({
+    ...meta,
+    title: t.projects.items[meta.id as keyof typeof t.projects.items].title,
+    description: t.projects.items[meta.id as keyof typeof t.projects.items].description,
+  }))
 
   if (selectedProject) {
     return (
@@ -71,7 +39,7 @@ export default function ProjectsSection() {
             onClick={() => setSelectedProject(null)}
             className="mb-8 text-blue-700 hover:text-blue-800 hover:bg-blue-50"
           >
-            ← Retour aux projets
+            {t.projects.backToProjects}
           </Button>
           <ProjectShowcase project={selectedProject as any} />
         </div>
@@ -79,97 +47,52 @@ export default function ProjectsSection() {
     )
   }
 
+  const categories = [
+    { value: "all", label: t.projects.tabs.all },
+    { value: "ux", label: t.projects.tabs.ux },
+    { value: "web", label: t.projects.tabs.web },
+    { value: "mobile", label: t.projects.tabs.mobile },
+    { value: "data", label: t.projects.tabs.data },
+  ]
+
   return (
     <section id="projects" className="py-16 bg-gradient-to-b from-white to-blue-50">
       <div className="container">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
           <div className="animate-slideUp">
-            <h2 className="text-3xl font-bold mb-2 text-blue-800">Mes Projets</h2>
-            <p className="text-blue-600">Découvrez mes réalisations récentes</p>
+            <h2 className="text-3xl font-bold mb-2 text-blue-800">{t.projects.title}</h2>
+            <p className="text-blue-600">{t.projects.subtitle}</p>
           </div>
         </div>
 
         <Tabs defaultValue="all" className="mb-12">
           <TabsList className="mb-8 bg-blue-100">
-            <TabsTrigger value="all" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">
-              Tous
-            </TabsTrigger>
-            <TabsTrigger value="ux" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">
-              UX/UI Design
-            </TabsTrigger>
-            <TabsTrigger value="web" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">
-              Web
-            </TabsTrigger>
-            <TabsTrigger value="mobile" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">
-              Mobile
-            </TabsTrigger>
-            <TabsTrigger value="data" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">
-              Data Science
-            </TabsTrigger>
+            {categories.map((category) => (
+              <TabsTrigger
+                key={category.value}
+                value={category.value}
+                className="data-[state=active]:bg-blue-600 data-[state=active]:text-white"
+              >
+                {category.label}
+              </TabsTrigger>
+            ))}
           </TabsList>
 
-          <TabsContent value="all" className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project, index) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                onClick={() => setSelectedProject(project.id)}
-                index={index}
-              />
-            ))}
-          </TabsContent>
-
-          <TabsContent value="ux" className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects
-              .filter((project) => project.category === "ux")
-              .map((project, index) => (
-                <ProjectCard
-                  key={project.id}
-                  project={project}
-                  onClick={() => setSelectedProject(project.id)}
-                  index={index}
-                />
-              ))}
-          </TabsContent>
-
-          <TabsContent value="web" className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects
-              .filter((project) => project.category === "web")
-              .map((project, index) => (
-                <ProjectCard
-                  key={project.id}
-                  project={project}
-                  onClick={() => setSelectedProject(project.id)}
-                  index={index}
-                />
-              ))}
-          </TabsContent>
-
-          <TabsContent value="mobile" className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects
-              .filter((project) => project.category === "mobile")
-              .map((project, index) => (
-                <ProjectCard
-                  key={project.id}
-                  project={project}
-                  onClick={() => setSelectedProject(project.id)}
-                  index={index}
-                />
-              ))}
-          </TabsContent>
-
-          <TabsContent value="data" className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects
-              .filter((project) => project.category === "data")
-              .map((project, index) => (
-                <ProjectCard
-                  key={project.id}
-                  project={project}
-                  onClick={() => setSelectedProject(project.id)}
-                  index={index}
-                />
-              ))}
-          </TabsContent>
+          {categories.map((category) => (
+            <TabsContent key={category.value} value={category.value} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {projects
+                .filter((project) => category.value === "all" || project.category === category.value)
+                .map((project, index) => (
+                  <ProjectCard
+                    key={project.id}
+                    project={project}
+                    onClick={() => setSelectedProject(project.id)}
+                    index={index}
+                    viewProjectLabel={t.projects.viewProject}
+                  />
+                ))}
+            </TabsContent>
+          ))}
         </Tabs>
       </div>
     </section>
@@ -182,13 +105,14 @@ interface ProjectCardProps {
     title: string
     description: string
     image: string
-    tags: string[]
+    tags: readonly string[]
   }
   onClick: () => void
   index: number
+  viewProjectLabel: string
 }
 
-function ProjectCard({ project, onClick, index }: ProjectCardProps) {
+function ProjectCard({ project, onClick, index, viewProjectLabel }: ProjectCardProps) {
   return (
     <Card
       className="overflow-hidden group border-blue-100 shadow-md hover:shadow-xl transition-all duration-300 animate-slideUp"
@@ -216,7 +140,7 @@ function ProjectCard({ project, onClick, index }: ProjectCardProps) {
       </CardContent>
       <CardFooter>
         <Button onClick={onClick} className="w-full bg-blue-600 hover:bg-blue-700">
-          Voir le projet
+          {viewProjectLabel}
           <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
       </CardFooter>

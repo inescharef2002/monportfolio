@@ -1,27 +1,31 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Download, ArrowRight } from "lucide-react"
+import { useLanguage } from "@/lib/language-context"
+import { translations } from "@/lib/translations"
 
 export default function HeroSection() {
+  const { language } = useLanguage()
+  const t = translations[language]
+
   return (
     <section className="py-20 md:py-32 bg-gradient-to-b from-blue-50 to-background">
       <div className="container grid md:grid-cols-2 gap-8 items-center">
         <div className="animate-slideUp">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-blue-800">Ines Charef</h1>
-          <h2 className="text-2xl md:text-3xl font-medium text-blue-600 mb-6">Étudiante en Génie Logiciel</h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-md">
-            Passionnée par le développement full-stack et l'intelligence artificielle, je crée des solutions innovantes
-            centrées sur l'utilisateur.
-          </p>
+          <h2 className="text-2xl md:text-3xl font-medium text-blue-600 mb-6">{t.hero.title}</h2>
+          <p className="text-lg text-muted-foreground mb-8 max-w-md">{t.hero.bio}</p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Button size="lg" className="bg-blue-600 hover:bg-blue-700" asChild>
-              <a href="/cv-ines-charef-updated.pdf" download="CV-Ines-Charef.pdf">
+              <a href={t.hero.cvFile} download={t.hero.cvFileName}>
                 <Download className="mr-2 h-4 w-4" />
-                Télécharger CV
+                {t.hero.downloadCv}
               </a>
             </Button>
             <Button size="lg" variant="outline" className="border-blue-300 text-blue-700 hover:bg-blue-50" asChild>
               <a href="#projects">
-                Voir mes projets
+                {t.hero.viewProjects}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </a>
             </Button>
@@ -40,8 +44,8 @@ export default function HeroSection() {
               </div>
             </div>
             <div>
-              <p className="font-medium">Développeuse Full-Stack</p>
-              <p className="text-sm text-muted-foreground">2+ ans d'expérience</p>
+              <p className="font-medium">{t.hero.cardTitle}</p>
+              <p className="text-sm text-muted-foreground">{t.hero.cardSubtitle}</p>
             </div>
           </div>
         </div>
